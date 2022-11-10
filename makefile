@@ -1,4 +1,4 @@
-MCU   = atmega168
+MCU   = atmega328p
 #MCU = m168
 F_CPU = 1000000UL  
 BAUD  = 9600UL
@@ -13,7 +13,7 @@ AVRSIZE = avr-size
 AVRDUDE = avrdude
 
 ## The name of your project (without the .c)
-TARGET = pwm_m168
+TARGET = main
 ## Or name it automatically after the enclosing directory
 #TARGET = $(lastword $(subst /, ,$(CURDIR)))
 

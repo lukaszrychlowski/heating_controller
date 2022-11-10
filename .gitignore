@@ -1,0 +1,6 @@
+main.elf
+main.hex
+main.map
+main.o
+.vscode/tasks.json
+.DS_Store
