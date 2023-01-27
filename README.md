@@ -1,7 +1,7 @@
 # heating_controller
 Small controller of three heating coils for metal casting setup in our laboratory. Control via rotary encoder with i2c OLED display.
 
-TODO:
+TODO:<br />
 Temp. measurement<br />
 PID control<br />
 Increase displays font size - scaling alghoritm<br />
