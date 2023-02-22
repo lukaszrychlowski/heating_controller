@@ -4,3 +4,5 @@ main.map
 main.o
 .vscode/tasks.json
 .DS_Store
+oled.o
+
