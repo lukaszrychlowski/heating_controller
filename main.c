@@ -77,7 +77,19 @@ int main(void){
         oled_print_output2(output2_count);
         set_output3(output3_count);
         oled_print_output3(output3_count);
-    }
+        if (output_event == 1){
+            oled_clear_arrows();
+            oled_print_arrow(1);
+            }
+        else if (output_event == 2){
+            oled_clear_arrows();
+            oled_print_arrow(8);
+            }
+        else if (output_event == 3){
+            oled_clear_arrows();
+            oled_print_arrow(14);
+            }
+}
 }
 
 ISR(PCINT0_vect){
@@ -104,19 +116,16 @@ ISR(PCINT0_vect){
         
     if(output_event == 1){
         output1_count = output1_count + count;
-        
         //set_output1(output1_count);
         count = 0;
     }
     else if(output_event == 2){
         output2_count = output2_count + count;
-        
         //set_output2(output2_count);
         count = 0;
     }
     else if(output_event == 3){
         output3_count = output3_count + count;
-        
         //set_output3(output3_count);
         count = 0;
     }

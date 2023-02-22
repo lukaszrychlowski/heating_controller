@@ -5,4 +5,5 @@ main.o
 .vscode/tasks.json
 .DS_Store
 oled.o
+i2c.o
 
