@@ -127,16 +127,16 @@ void oled_print_channel(uint8_t row, uint8_t channel_no){
 
 /// oled print arrow symbol
 void oled_print_arrow(uint8_t row){
-    oled_set_cursor(25,row);
+    oled_set_cursor(65,row);
     oled_print_char(arrow_head);
-    oled_set_cursor(31,row);
+    oled_set_cursor(71,row);
     oled_print_char(arrow_tail);
 }
 
 /// oled clear arrows
 void oled_clear_arrows(){
-    for (uint8_t i = 0; i <= 10; i = i + 5){
-        for (uint8_t j = 25; j <= 31; j = j + 6){
+    for (uint8_t i = 0; i <= 15; i = i + 1){
+        for (uint8_t j = 65; j <= 71; j = j + 6){
             oled_set_cursor(j, i);
             oled_print_char(clear_segment);
         } 
@@ -146,38 +146,35 @@ void oled_clear_arrows(){
 /// oled print current values for ouputs
 void oled_print_output1(uint8_t output){
     oled_clear_arrows();
-    oled_print_arrow(0);
-    oled_print_temp(output, 0, 0 + 2);
-    oled_print_temp(100 * output / 255, 0, 0 + 3);
+    oled_print_arrow(2);
+    //oled_print_temp(output, 0, 0 + 2);
+    oled_print_big_char(100 * output / 255, 0, 1);
 }
 
 void oled_print_output2(uint8_t output){
     oled_clear_arrows();
-    oled_print_arrow(5);
-    oled_print_temp(output, 0, 5 + 2);
-    oled_print_temp(100 * output / 255, 0, 5 + 3);
+    oled_print_arrow(8);
+    //oled_print_temp(output, 0, 5 + 2);
+    oled_print_big_char(100 * output / 255, 0, 7);
 }
 
 void oled_print_output3(uint8_t output){
     oled_clear_arrows();
-    oled_print_arrow(10);
-    oled_print_temp(output, 0, 10 + 2);
-    oled_print_temp(100 * output / 255, 0, 10 + 3);
+    oled_print_arrow(14);
+    //oled_print_big_char(output, 0, 10 + 2);
+    oled_print_big_char(100 * output / 255, 0, 13);
 }
 
 /// oled print output names and init values
 void oled_print_main(){
-    oled_print_channel(0, 1);
-    oled_print_temp(0, 0, 2);
-    oled_print_temp(0, 0, 3);
+    //oled_print_channel(0, 1);
+    oled_print_big_char(0, 0, 1);
     oled_print_char(percent);
-    oled_print_channel(5, 2);
-    oled_print_temp(0, 0, 7);
-    oled_print_temp(0, 0, 8);
+    //oled_print_channel(5, 2);
+    oled_print_big_char(0, 0, 7);
     oled_print_char(percent);
-    oled_print_channel(10, 3);
-    oled_print_temp(0, 0, 12);
-    oled_print_temp(0, 0, 13);
+    //oled_print_channel(10, 3);
+    oled_print_big_char(0, 0, 13);
     oled_print_char(percent);
 }
 
@@ -190,8 +187,8 @@ int oled_stretch (int x) {                                      // abcdefgh -> a
 }
 
 void oled_print_big_char(int temp, int col, int line){                              //TODO: refactor big_char function
-    uint8_t font_size = 2;
-    for (int i = 1000; i > 0; i = i / 10){
+    uint8_t font_size = 3;
+    for (int i = 100; i > 0; i = i / 10){
         oled_set_cursor(col, line);
         char digit = get_digit(temp, i);
         i2c_start(oled_addr);
