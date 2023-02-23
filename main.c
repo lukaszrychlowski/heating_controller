@@ -71,31 +71,36 @@ int main(void){
     PCIFR = (1 << PCIF0);                               // clear interrupt flag
     //sei();
     while(1){
-        if (100 * output1_count / 255 == 0) OCR1A = 0;
-        else if(100 * output1_count / 255 == 100) OCR1A = 255;
+        if (100 * output1_count / 255 == 0) output1_count = 0;              //OUT1
+        else if(100 * output1_count / 255 == 100) output1_count = 255;
         set_output1(output1_count);
-        oled_print_big_char(100 * output1_count / 255, 65, 1);
-        if (100 * output2_count / 255 == 0) output2_count = 0;
+        oled_print_big_char(100 * output1_count / 255, 30, 1);
+        
+        if (100 * output2_count / 255 == 0) output2_count = 0;      //OUT2
         else if(100 * output2_count / 255 == 100) output2_count = 255;
         set_output2(output2_count);
-        oled_print_big_char(100 * output2_count / 255, 65, 7);
-        if (100 * output3_count / 255 == 0) OCR2A = 0;
-        else if(100 * output3_count / 255 == 100) OCR2A = 255;
+        oled_print_big_char(100 * output2_count / 255, 30, 7);
+
+        if (100 * output3_count / 255 == 0) output3_count = 0;              //OUT3
+        else if(100 * output3_count / 255 == 100) output3_count = 255;
         set_output3(output3_count);
-        oled_print_big_char(100 * output3_count / 255, 65, 13);
-        if (output_event == 1){
-            oled_clear_arrows();
-            oled_print_arrow(2);
+        oled_print_big_char(100 * output3_count / 255, 30, 13);
+        
+        switch (output_event){
+            case 1: 
+                oled_clear_arrows();
+                oled_print_arrow(2);
+                break;
+            case 2:
+                oled_clear_arrows();
+                oled_print_arrow(8);
+                break;
+            case 3:
+                oled_clear_arrows();
+                oled_print_arrow(14);
+                break;
             }
-        else if (output_event == 2){
-            oled_clear_arrows();
-            oled_print_arrow(8);
-            }
-        else if (output_event == 3){
-            oled_clear_arrows();
-            oled_print_arrow(14);
-            }
-}
+    }   
 }
 
 ISR(PCINT0_vect){

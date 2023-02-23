@@ -4,7 +4,7 @@ F_CPU = 1000000UL
 BAUD  = 9600UL
 LIBDIR = /usr/local/CrossPack-AVR-20131216/avr/include
 PROGRAMMER_TYPE = usbasp
-PROGRAMMER_ARGS = -B 10.0
+PROGRAMMER_ARGS = -B 10.0 -F
 
 CC = avr-gcc
 OBJCOPY = avr-objcopy

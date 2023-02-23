@@ -127,16 +127,16 @@ void oled_print_channel(uint8_t row, uint8_t channel_no){
 
 /// oled print arrow symbol
 void oled_print_arrow(uint8_t row){
-    oled_set_cursor(65,row);
+    oled_set_cursor(94,row);
     oled_print_char(arrow_head);
-    oled_set_cursor(71,row);
+    oled_set_cursor(100,row);
     oled_print_char(arrow_tail);
 }
 
 /// oled clear arrows
 void oled_clear_arrows(){
     for (uint8_t i = 0; i <= 15; i = i + 1){
-        for (uint8_t j = 65; j <= 71; j = j + 6){
+        for (uint8_t j = 94; j <= 100; j = j + 6){
             oled_set_cursor(j, i);
             oled_print_char(clear_segment);
         } 
@@ -145,14 +145,14 @@ void oled_clear_arrows(){
 
 /// oled print output names and init values
 void oled_print_main(){
-    //oled_print_channel(0, 1);
-    oled_print_big_char(0, 0, 1);
+    oled_print_channel(2, 1);
+    oled_print_big_char(0, 30, 1);
     oled_print_char(percent);
-    //oled_print_channel(5, 2);
-    oled_print_big_char(0, 0, 7);
+    oled_print_channel(8, 2);
+    oled_print_big_char(0, 30, 7);
     oled_print_char(percent);
-    //oled_print_channel(10, 3);
-    oled_print_big_char(0, 0, 13);
+    oled_print_channel(14, 3);
+    oled_print_big_char(0, 30, 13);
     oled_print_char(percent);
 }
 
