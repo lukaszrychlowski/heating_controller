@@ -71,15 +71,21 @@ int main(void){
     PCIFR = (1 << PCIF0);                               // clear interrupt flag
     //sei();
     while(1){
+        if (100 * output1_count / 255 == 0) OCR1A = 0;
+        else if(100 * output1_count / 255 == 100) OCR1A = 255;
         set_output1(output1_count);
         oled_print_output1(output1_count);
+        if (100 * output2_count / 255 == 0) output2_count = 0;
+        else if(100 * output2_count / 255 == 100) output2_count = 255;
         set_output2(output2_count);
         oled_print_output2(output2_count);
+        if (100 * output3_count / 255 == 0) OCR2A = 0;
+        else if(100 * output3_count / 255 == 100) OCR2A = 255;
         set_output3(output3_count);
         oled_print_output3(output3_count);
         if (output_event == 1){
             oled_clear_arrows();
-            oled_print_arrow(1);
+            oled_print_arrow(2);
             }
         else if (output_event == 2){
             oled_clear_arrows();
@@ -116,16 +122,18 @@ ISR(PCINT0_vect){
         
     if(output_event == 1){
         output1_count = output1_count + count;
-        //set_output1(output1_count);
+        
         count = 0;
     }
     else if(output_event == 2){
         output2_count = output2_count + count;
+        
         //set_output2(output2_count);
         count = 0;
     }
     else if(output_event == 3){
         output3_count = output3_count + count;
+        
         //set_output3(output3_count);
         count = 0;
     }
