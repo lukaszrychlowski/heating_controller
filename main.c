@@ -74,15 +74,15 @@ int main(void){
         if (100 * output1_count / 255 == 0) OCR1A = 0;
         else if(100 * output1_count / 255 == 100) OCR1A = 255;
         set_output1(output1_count);
-        oled_print_output1(output1_count);
+        oled_print_big_char(100 * output1_count / 255, 65, 1);
         if (100 * output2_count / 255 == 0) output2_count = 0;
         else if(100 * output2_count / 255 == 100) output2_count = 255;
         set_output2(output2_count);
-        oled_print_output2(output2_count);
+        oled_print_big_char(100 * output2_count / 255, 65, 7);
         if (100 * output3_count / 255 == 0) OCR2A = 0;
         else if(100 * output3_count / 255 == 100) OCR2A = 255;
         set_output3(output3_count);
-        oled_print_output3(output3_count);
+        oled_print_big_char(100 * output3_count / 255, 65, 13);
         if (output_event == 1){
             oled_clear_arrows();
             oled_print_arrow(2);
@@ -99,7 +99,6 @@ int main(void){
 }
 
 ISR(PCINT0_vect){
-    
     uint8_t a = PINB >> encoder_A & 1;                  // read pins state, sets a to 0 or 1
     uint8_t b = PINB >> encoder_B & 1;
     uint8_t s = PINB >> encoder_button & 1;
@@ -108,6 +107,20 @@ ISR(PCINT0_vect){
         if (b != c0){                                   // clockwise, or counterclockwise?
             c0 = b;
             count = count + change_value(a == b);
+            switch (output_event){
+            case 1: 
+                output1_count = output1_count + count;
+                count = 0;
+                break;
+            case 2:
+                output2_count = output2_count + count;
+                count = 0;
+                break;
+            case 3:
+                output3_count = output3_count + count;
+                count = 0;
+                break;
+            }
         }
     }
     else if(s != s0){                                   // check if button was pressed
@@ -119,25 +132,5 @@ ISR(PCINT0_vect){
             if(output_event > 3) output_event = 1;
         }
     }
-        
-    if(output_event == 1){
-        output1_count = output1_count + count;
-        
-        count = 0;
-    }
-    else if(output_event == 2){
-        output2_count = output2_count + count;
-        
-        //set_output2(output2_count);
-        count = 0;
-    }
-    else if(output_event == 3){
-        output3_count = output3_count + count;
-        
-        //set_output3(output3_count);
-        count = 0;
-    }
 }
-  
-
 

@@ -143,28 +143,6 @@ void oled_clear_arrows(){
     }
 }
 
-/// oled print current values for ouputs
-void oled_print_output1(uint8_t output){
-    //oled_clear_arrows();
-    //oled_print_arrow(2);
-    //oled_print_temp(output, 0, 0 + 2);
-    oled_print_big_char(100 * output / 255, 0, 1);
-}
-
-void oled_print_output2(uint8_t output){
-    //oled_clear_arrows();
-    //oled_print_arrow(8);
-    //oled_print_temp(output, 0, 5 + 2);
-    oled_print_big_char(100 * output / 255, 0, 7);
-}
-
-void oled_print_output3(uint8_t output){
-    //oled_clear_arrows();
-    //oled_print_arrow(14);
-    //oled_print_big_char(output, 0, 10 + 2);
-    oled_print_big_char(100 * output / 255, 0, 13);
-}
-
 /// oled print output names and init values
 void oled_print_main(){
     //oled_print_channel(0, 1);
