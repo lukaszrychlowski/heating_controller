@@ -4,7 +4,8 @@ Small controller of three heating coils for metal casting setup in our laborator
 TODO:<br />
 Temp. measurement<br />
 PID control<br />
-Increase displays font size - scaling alghoritm<br />
+#Increase displays font size - scaling alghoritm<br />
+Debounce encoder button
 
 Resources:<br />
 https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-2586-AVR-8-bit-Microcontroller-ATtiny25-ATtiny45-ATtiny85_Datasheet.pdf<br />
